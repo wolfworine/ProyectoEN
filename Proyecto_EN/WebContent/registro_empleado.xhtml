@@ -1,0 +1,93 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+ 	<h:head>
+    	<h:outputStylesheet library="css" name="table-style.css"  />
+    </h:head>
+
+
+<h:form>
+	<h2>Mantenimiento Empleado</h2>
+	<h:panelGrid columns="4" style="with:500px;">
+<!-- 	Nombre -->
+		<h:outputText value="Empleado:" required="true"/>
+		<h:inputText value="#{empleadoManagedBean.empleado.nombre}">
+				<f:validateLength maximum="30" />		
+		</h:inputText>
+		<h:message for="dni" style="color:red" />
+		
+<!-- 		DNI -->
+		<h:outputText value="DNI:" />
+		<h:inputText id="dni" value="#{empleadoManagedBean.empleado.DNI}" size="20" required="true">
+				<f:validateLength minimum="8" maximum="8" />
+		</h:inputText>
+ 
+		<h:message for="dni" style="color:red" />
+		
+<!-- 		FECHA NACIMIENTO -->
+		<h:outputText value="Fecha Nac.:" />
+		<h:inputText id="date" value="#{empleadoManagedBean.empleado.fechaNacimiento}" size="20" required="true" >
+ 				<f:convertDateTime pattern="dd/mm/yyyy" />
+	    </h:inputText>
+ 
+		  <h:message for="date" style="color:red" />
+		  
+<!-- 		  SALARIO -->
+		<h:outputText value="Salario:" />
+		<h:inputText id="sal" value="#{empleadoManagedBean.empleado.salario}" size="20" required="true" >
+				<f:convertNumber minFractionDigits="2" />
+	    </h:inputText>
+ 
+		<h:message for="sal" style="color:red" />
+		  
+	</h:panelGrid>
+	
+	<h:commandButton value="Registrar"
+		action="#{empleadoManagedBean.registrar}" />
+</h:form>
+
+
+<h:dataTable value="#{empleadoManagedBean.empleados}" var="e"
+	styleClass="order-table" headerClass="order-table-header"
+	rowClasses="order-table-odd-row,order-table-even-row">
+
+
+var="d">
+
+<h:column>
+	<f:facet name="header">Id</f:facet>
+	#{e.id}
+</h:column>
+
+
+
+<h:column>
+	<f:facet name="header">Nombre</f:facet>
+	#{e.nombre}
+</h:column>
+
+<h:column>
+	<f:facet name="header">DNI</f:facet>
+	#{e.DNI}
+</h:column>
+
+<h:column>
+	<f:facet name="header">Fecha Nacimiento</f:facet>
+	<h:outputText value="#{e.fechaNacimiento}" >
+			<f:convertDateTime pattern="dd-mm-yyyy" />
+	</h:outputText>
+</h:column>
+
+<h:column>
+	<f:facet name="header">Salario</f:facet>
+	<h:outputText value="#{e.salario}" >
+			<f:convertNumber minFractionDigits="2"  />
+	</h:outputText>
+ </h:column>
+
+</h:dataTable>
+
+
+</html>

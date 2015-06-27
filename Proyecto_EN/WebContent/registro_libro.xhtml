@@ -1,0 +1,106 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+ 	<h:head>
+    	<h:outputStylesheet library="css" name="table-style.css"  />
+    </h:head>
+
+
+<h:form>
+	<h2>Mantenimiento Libro</h2>
+	<h:panelGrid columns="4" style="with:500px;">
+
+		<h:outputText value="Título:" required="true"/>
+		<h:inputText id="titulo" value="#{libroManagedBean.libro.titulo}" required="true">
+				<f:validateLength maximum="30" />		
+		</h:inputText>
+		<h:message for="titulo" style="color:red" />
+		
+
+		<h:outputText value="Autor:" />
+		<h:inputText id="autor" value="#{libroManagedBean.libro.autor}" size="20" required="true">
+				<f:validateLength maximum="30" />
+		</h:inputText>
+ 
+		<h:message for="autor" style="color:red" />
+		
+
+		<h:outputText value="Nro Páginas:" />
+		<h:inputText id="nro" value="#{libroManagedBean.libro.nroPagina}" size="20" required="true">
+				<f:validateLongRange minimum="5"/>
+		</h:inputText>
+ 
+		<h:message for="nro" style="color:red" />
+		
+
+		<h:outputText value="Fecha Pub.:" />
+		<h:inputText id="date" value="#{libroManagedBean.libro.fechaPublicacion}" size="20" required="true" >
+ 				<f:convertDateTime pattern="dd/mm/yyyy" />
+	    </h:inputText>
+ 
+		  <h:message for="date" style="color:red" />
+		
+		
+
+		<h:outputText value="Precio: $ " />
+		<h:inputText id="pre" value="#{libroManagedBean.libro.precio}" size="20" required="true" >
+				<f:validateLongRange minimum="0"/>
+				<f:convertNumber minFractionDigits="2" />
+	    </h:inputText>
+ 
+		<h:message for="pre" style="color:red" />
+		  
+	</h:panelGrid>
+	
+	<h:commandButton value="Registrar"
+		action="#{libroManagedBean.registrar}" />
+</h:form>
+
+
+<!-- <h:dataTable value="#{libroManagedBean.libros}" var="l" -->
+<!-- 	styleClass="order-table" headerClass="order-table-header" -->
+<!-- 	rowClasses="order-table-odd-row,order-table-even-row"> -->
+
+<!-- <h:column> -->
+<!-- 	<f:facet name="header">Id</f:facet> -->
+<!-- 	#{l.id} -->
+<!-- </h:column> -->
+
+
+
+<!-- <h:column> -->
+<!-- 	<f:facet name="header">Título</f:facet> -->
+<!-- 	#{l.titulo} -->
+<!-- </h:column> -->
+
+<!-- <h:column> -->
+<!-- 	<f:facet name="header">Autor</f:facet> -->
+<!-- 	#{l.autor} -->
+<!-- </h:column> -->
+
+<!-- <h:column> -->
+<!-- 	<f:facet name="header">Páginas</f:facet> -->
+<!-- 	#{l.nroPagina}	 -->
+<!-- </h:column> -->
+
+<!-- <h:column> -->
+<!-- 	<f:facet name="header">Fecha Publicación</f:facet> -->
+<!-- 	<h:outputText value="#{l.fechaPublicacion}" > -->
+<!-- 			<f:convertDateTime pattern="dd-mm-yyyy" /> -->
+<!-- 	</h:outputText> -->
+<!-- </h:column> -->
+
+
+<!-- <h:column> -->
+<!-- 	<f:facet name="header">Precio: S/ </f:facet> -->
+<!-- 	<h:outputText value="#{l.precio}" > -->
+<!-- 			<f:convertNumber minFractionDigits="2"  /> -->
+<!-- 	</h:outputText> -->
+<!--  </h:column> -->
+
+<!-- </h:dataTable> -->
+
+
+</html>
